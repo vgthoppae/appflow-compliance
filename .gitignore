@@ -102,3 +102,14 @@ dist
 
 # TernJS port file
 .tern-port
+.DS_Store
+lambdas/package-lock.json
+lambdas/samconfig.toml
+lambdas/connprofile.json
+lambdas/flowout.json
+lambdas/s3flow.json
+lambdas/events/appflow-conn-event.json
+lambdas/events/appflow-create-flow-event.json
+lambdas/events/appflow-s3createflow-event.json
+lambdas/src/.npmignore
+lambdas/events/s3-create-flow.js
