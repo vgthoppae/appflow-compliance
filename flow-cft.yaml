@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  appflow builder
+
+Resources:
+  ProdAppFlow:
+    Type: AWS::AppFlow::Flow
+    Properties:
+      FlowName: CloudProdFlow
+
+      DestinationFlowConfigList:
+        Transform:
+          Name: 'AWS::Include'
+          Parameters:
+            Location: 's3://sbabsdev-s3bucket-out/config/dest_config.json'
+
+      SourceFlowConfig:
+        Transform:
+          Name: 'AWS::Include'
+          Parameters:
+            Location: 's3://sbabsdev-s3bucket-out/config/source_config.json'
+
+      Tasks:
+        Transform:
+          Name: 'AWS::Include'
+          Parameters:
+            Location: 's3://sbabsdev-s3bucket-out/config/tasks_config.json'
+
+      TriggerConfig:
+        TriggerType: OnDemand
+
+Outputs:
+  AppFlowComplianceFunction:
+    Description: "AppFlow"
+    Value: !GetAtt ProdAppFlow.Arn
